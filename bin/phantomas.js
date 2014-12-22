@@ -11,6 +11,7 @@
 
 var phantomas = require('..'),
 	async = require('async'),
+	extend = require('extend'),
 	debug = require('debug')('phantomas:cli'),
 	program = require('../lib/optimist-config-file'),
 	ProgressBar = require('progress'),
@@ -76,7 +77,7 @@ program.setConfigFile('config');
 
 // parse it
 options = program.parse(process.argv);
-
+console.log(options);
 // show version number
 if (options.version === true) {
 	console.log('phantomas v%s', phantomas.version);
@@ -130,6 +131,18 @@ if (!process.stdout.isTTY && (options.colors !== true)) {
 	process.env.BW = 1;
 }
 
+var customTags = null;
+if (options.customTags) {
+	customTags = {};
+	var splits = options.customTags.split(',');
+	for(var i = 0, len = splits.length ; i<len ; i++) {
+		var subSplits = splits[i].split('=');
+		if(subSplits.length > 1) {
+			customTags[subSplits[0]] = subSplits[1];
+		}
+	}
+}
+
 // perform a single run
 function task(callback) {
 	// spawn phantomas process
@@ -162,6 +175,11 @@ async.series(
 		var debug = require('debug')('phantomas:runs'),
 			reporter,
 			res;
+
+		if (options.customTags) {
+			extend(results, customTags);
+		}
+		console.log(results);	
 
 		debug('err: %j', err);
 		debug('results [%d]: %j', results.length, results);

@@ -1,0 +1,67 @@
+{
+  "name": "phantomas",
+  "version": "1.8.0",
+  "author": "macbre <maciej.brencz@gmail.com> (http://macbre.net)",
+  "description": "PhantomJS-based web performance metrics collector",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/macbre/phantomas.git"
+  },
+  "keywords": [
+    "high performance web sites",
+    "metrics",
+    "monitoring",
+    "phantomas",
+    "phantomjs",
+    "web development",
+    "webperf"
+  ],
+  "license": "BSD",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "analyze-css": "0.8.x",
+    "ansicolors": "~0.3.2",
+    "ansistyles": "~0.1.0",
+    "ascii-table": "0.0.4",
+    "async": "~0.9.0",
+    "csv-string": "~2.1.1",
+    "debug": "~2.1.0",
+    "elasticsearch": "~1.5.14",
+    "js-yaml": "^3.1.0",
+    "node-statsd": "0.0.7",
+    "node-uuid": "~1.4.1",
+    "optimist": "0.6.x",
+    "phantomjs": "~1.9.0",
+    "progress": "~1.1.4",
+    "q": "^1.0.1",
+    "slimerjs": "^0.9.1-2",
+    "tap": "~0.4.8",
+    "tap-eater": ">=0.0.1",
+    "travis-fold": ">=0.1.2"
+  },
+  "devDependencies": {
+    "glob": "^4.0.6",
+    "http-server": "^0.6.1",
+    "js-beautify": "^1.5.4",
+    "jshint": "^2.5.6",
+    "mockery": "^1.4.0",
+    "vows": "^0.7.0"
+  },
+  "optionalDependencies": {},
+  "bin": "./bin/phantomas.js",
+  "preferGlobal": true,
+  "scripts": {
+    "test": "vows --spec",
+    "lint": "jshint --verbose core/ modules/ scripts/ test/ lib/*.js lib/metadata/*.js reporters/",
+    "beautify": "js-beautify -r bin/phantomas.js core/*.js examples/*.js extensions/*/*.js lib/*.js lib/engines/*.js lib/metadata/*.js modules/*/*.js reporters/*.js scripts/*.js test/*.js test/*/*.js",
+    "metadata": "DEBUG=* node lib/metadata/generate.js"
+  },
+  "jshintConfig": {
+    "node": true,
+    "-W020": false,
+    "-W030": false
+  }
+}

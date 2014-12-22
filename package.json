@@ -6,7 +6,7 @@
   "main": "./lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/macbre/phantomas.git"
+    "url": "https://github.com/pricelinelabs/phantomas.git"
   },
   "keywords": [
     "high performance web sites",
@@ -38,6 +38,7 @@
     "progress": "~1.1.4",
     "q": "^1.0.1",
     "slimerjs": "^0.9.1-2",
+    "system": "^0.1.0",
     "tap": "~0.4.8",
     "tap-eater": ">=0.0.1",
     "travis-fold": ">=0.1.2"

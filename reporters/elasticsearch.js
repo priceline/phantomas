@@ -40,6 +40,7 @@ module.exports = function(results, reporterOptions, options) {
 					host: params.host
 				}),
 				metrics = results.getMetricsNames(),
+				customTags = results.getCustomTagNames(),
 				documentBody = {
 					url: results.getUrl(),
 					reportDate: new Date()
@@ -55,6 +56,7 @@ module.exports = function(results, reporterOptions, options) {
 				};
 			// create and index an elasticsearch document with metrics data
 			function indexReport(documentBody) {
+				console.log(documentBody);
 				client.create({
 					index: params.index,
 					type: params.type,
@@ -72,6 +74,15 @@ module.exports = function(results, reporterOptions, options) {
 			metrics.forEach(function(metric) {
 				var value = results.getMetric(metric);
 				documentBody[metric] = value;
+
+				mappingFields[metric] = {
+					type: (isNaN(value) ? 'string' : 'integer')
+				};
+			});
+
+			customTags.forEach(function(tag) {
+				var value = results.getCustomTag(tag);
+				documentBody[tag] = value;
 
 				mappingFields[metric] = {
 					type: (isNaN(value) ? 'string' : 'integer')

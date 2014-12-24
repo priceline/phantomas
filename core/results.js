@@ -10,7 +10,8 @@ module.exports = function(data) {
 		generator = '',
 		metrics = {},
 		offenders = {},
-		url;
+		url,
+		customTags = {};
 
 	if (data) {
 		asserts = data.asserts || {};
@@ -72,6 +73,25 @@ module.exports = function(data) {
 		},
 		getGenerator: function() {
 			return generator;
+		},
+
+		//Custom user-defined k-v tags
+		setCustomTags: function(tags) {
+			if (tags) {
+				var splits = tags.split(',');
+				for(var i = 0, len = splits.length ; i<len ; i++) {
+					var subSplits = splits[i].split('=');
+					if(subSplits.length > 1) {
+						customTags[subSplits[0]] = subSplits[1];
+					}
+				}
+			}
+		},
+		getCustomTag: function(tagName) {
+			return customTags[tagName];
+		},
+		getCustomTagNames: function() {
+			return Object.keys(customTags);
 		},
 
 		// asserts handling

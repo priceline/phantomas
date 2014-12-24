@@ -136,7 +136,10 @@ function task(callback) {
 	// spawn phantomas process
 	var child = phantomas(url, options, function(err, data, results) {
 		callback(err === 0 ? null : err, results);
+		console.log('bin phantomas');
+	console.log(results.getCustomTagNames());
 	});
+
 
 	child.on('progress', function(progress, inc) {
 		if (bar) {

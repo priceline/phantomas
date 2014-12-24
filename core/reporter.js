@@ -35,6 +35,11 @@ module.exports = function(results, options) {
 		if (results.length === 1) {
 			debug('Single run mode');
 			results = results[0];
+
+			//Set custom tags on results
+			console.log(results);
+			results.setCustomTags(options.customTags);
+			
 		} else {
 			debug('Multiple runs mode');
 			inMultipleMode = true;

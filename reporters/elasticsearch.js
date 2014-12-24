@@ -84,7 +84,7 @@ module.exports = function(results, reporterOptions, options) {
 				var value = results.getCustomTag(tag);
 				documentBody[tag] = value;
 
-				mappingFields[metric] = {
+				mappingFields[tag] = {
 					type: (isNaN(value) ? 'string' : 'integer')
 				};
 			});

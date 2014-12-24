@@ -77,8 +77,12 @@ module.exports = function(data) {
 
 		//Custom user-defined k-v tags
 		setCustomTags: function(tags) {
+			console.log("RESULTS MODULE!!");
+			console.log(tags);
 			if (tags) {
 				var splits = tags.split(',');
+				console.log('SPLITS');
+				console.log(splits);
 				for(var i = 0, len = splits.length ; i<len ; i++) {
 					var subSplits = splits[i].split('=');
 					if(subSplits.length > 1) {
@@ -86,11 +90,14 @@ module.exports = function(data) {
 					}
 				}
 			}
+			console.log(JSON.stringify(customTags));
 		},
 		getCustomTag: function(tagName) {
 			return customTags[tagName];
 		},
 		getCustomTagNames: function() {
+			console.log('getCustomTagNames FUNCTION');
+			console.log(customTags);
 			return Object.keys(customTags);
 		},
 

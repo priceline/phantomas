@@ -37,7 +37,6 @@ module.exports = function(results, options) {
 			results = results[0];
 
 			//Set custom tags on results
-			console.log(results);
 			results.setCustomTags(options.customTags);
 			
 		} else {

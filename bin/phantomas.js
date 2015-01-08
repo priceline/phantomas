@@ -77,7 +77,7 @@ program.setConfigFile('config');
 
 // parse it
 options = program.parse(process.argv);
-console.log(options);
+
 // show version number
 if (options.version === true) {
 	console.log('phantomas v%s', phantomas.version);
